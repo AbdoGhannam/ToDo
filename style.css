@@ -1,0 +1,280 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.theme--1 {
+  --body--back-color: hsl(236, 33%, 92%);
+  --input-color: hsl(235, 19%, 35%);
+  --todos-back: hsl(0, 0%, 98%);
+  --hover-color: hsl(235, 19%, 35%);
+  --footer--text-color: hsl(236, 9%, 61%);
+  --complete-todos: hsl(233, 11%, 84%);
+}
+
+.theme--2 {
+  --body--back-color: hsl(235, 21%, 11%);
+  --input-color: hsl(233, 11%, 84%);
+  --todos-back: hsl(235, 24%, 19%);
+  --hover-color: hsl(236, 33%, 92%);
+  --footer--text-color: hsl(233, 14%, 35%);
+  --complete-todos: hsl(234, 11%, 52%);
+}
+
+.theme {
+  cursor: pointer;
+}
+
+.background-cont {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.1s;
+}
+
+body.theme--1 .background {
+  background: url(images/bg-desktop-1.jpg) no-repeat;
+}
+
+body.theme--2 .background {
+  background: url(images/bg-desktop-0.jpg) no-repeat;
+}
+
+body {
+  background-color: var(--body--back-color);
+  font-family: "Josefin Sans";
+  transition: background-color 0.2s;
+}
+
+.app {
+  position: absolute;
+  top: 30px;
+  right: 50%;
+  translate: 50% 0%;
+  width: 500px;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+svg {
+  cursor: pointer;
+}
+
+h1 {
+  color: white;
+  text-transform: uppercase;
+  font-size: 38px;
+  letter-spacing: 12px;
+}
+
+.nav--bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.todo-inp {
+  border: none;
+  padding: 18px 25px;
+  border-radius: 5px;
+  outline: none;
+  color: var(--input-color);
+  background-color: var(--todos-back);
+  font-size: 18px;
+}
+
+.todo-inp::placeholder {
+  color: var(--input-color);
+  font-family: Josefin Sans;
+  font-size: 16px;
+}
+
+.simple-list {
+  list-style: none;
+  margin-top: 20px;
+}
+
+li {
+  background-color: var(--todos-back);
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--complete-todos);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox {
+  border: 1px solid hsl(234, 11%, 52%);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.checkbox:checked {
+  background: url(images/icon-check.svg),
+    linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+.text {
+  cursor: pointer;
+  color: var(--input-color);
+}
+
+.checkbox:checked ~ .text {
+  text-decoration: line-through;
+  /* color: hsl(233, 11%, 84%); */
+  color: var(--complete-todos);
+}
+
+.remove {
+  background: url(images/icon-cross.svg) no-repeat;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  display: none;
+}
+
+ul li:hover .remove {
+  display: block;
+}
+
+.mob {
+  display: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--todos-back);
+  color: var(--footer--text-color);
+  padding: 20px 15px;
+  border-radius: 0 0 8px 8px;
+}
+
+.dragdrop {
+  position: fixed;
+  bottom: 25px;
+  right: 50%;
+  translate: 50% 50%;
+  color: var(--footer--text-color);
+}
+
+.filters label input {
+  opacity: 0;
+}
+
+.filters label {
+  /* margin: 0 10px; */
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filters label span:hover {
+  color: var(--hover-color);
+}
+
+.filters input[type="radio"]:checked ~ span {
+  color: hsl(220, 98%, 61%);
+}
+
+.clear {
+  cursor: pointer;
+}
+
+.clear:hover {
+  color: var(--hover-color);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  /* background-color: var(--todos-back);
+  color: var(--footer--text-color); */
+
+  .clear,
+  .count {
+    display: none;
+  }
+
+  .background {
+    background: url("images/bg-mobile-light.jpg") no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 40vh;
+    transition: all 0.3s;
+  }
+  body.theme--2 .background {
+    background: url("images/bg-mobile-dark.jpg") no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 40vh;
+    transition: all 0.3s;
+  }
+  .app {
+    width: 90%;
+  }
+  h1 {
+    font-size: 28px;
+    letter-spacing: 10px;
+  }
+  .filters {
+    margin: auto;
+  }
+  .footer {
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+  .mob {
+    color: var(--footer--text-color);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--todos-back);
+    height: 50px;
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 0 0 8px 8px;
+  }
+  .mob-clear {
+    cursor: pointer;
+  }
+  .mob-clear:hover {
+    color: var(--hover-color);
+  }
+}
+
+.preloader {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  background: black url(images/preloader.gif) no-repeat center center;
+  background-size: 10%;
+}
